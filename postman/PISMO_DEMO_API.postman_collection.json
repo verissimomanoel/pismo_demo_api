@@ -1,0 +1,312 @@
+{
+	"info": {
+		"_postman_id": "4af89e12-2385-4040-b0cf-4e000d231fb5",
+		"name": "PISMO_DEMO_API",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "LOGIN",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "74ac3685-3366-4ecd-900a-fa1c071f2adc",
+						"exec": [
+							"var jsonData = JSON.parse(responseBody);",
+							"postman.setEnvironmentVariable(\"ACCESS_TOKEN\", jsonData.accessToken);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"login\": \"adminpismo@gmail.com\",\n  \"password\": \"admin@123\"\n}"
+				},
+				"url": {
+					"raw": "{{URL_API}}/api/v1/auth/login",
+					"host": [
+						"{{URL_API}}"
+					],
+					"path": [
+						"api",
+						"v1",
+						"auth",
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "CREATE_USER",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "78a41476-9f7d-4807-9505-4b8af0e01349",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{ACCESS_TOKEN}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"name\": \"Manoel\",\n  \"email\": \"verissimo.manoel@gmail.com\",\n  \"password\": \"admin@123\"\n}"
+				},
+				"url": {
+					"raw": "{{URL_API}}/api/v1/user",
+					"host": [
+						"{{URL_API}}"
+					],
+					"path": [
+						"api",
+						"v1",
+						"user"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "UPDATE_USER",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "9b647528-967a-4693-9629-b4365728f740",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{ACCESS_TOKEN}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"id\": \"5dc9c138b3277e0b871604ac\",\n  \"name\": \"Manoel Veríssimo\",\n  \"email\": \"verissimo.manoel@gmail.com\",\n  \"password\": \"admin@123\"\n}"
+				},
+				"url": {
+					"raw": "{{URL_API}}/api/v1/user",
+					"host": [
+						"{{URL_API}}"
+					],
+					"path": [
+						"api",
+						"v1",
+						"user"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "DELETE_USER",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "5eb3932a-be5e-4008-9cbb-fbd04cd5f9ba",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "7214eef9-de85-4873-a845-7d2119e6c91a",
+						"exec": [
+							"var url = pm.environment.get(\"URL_API\");",
+							"url += \"/api/v1/user/\";",
+							"",
+							"var data = JSON.stringify({",
+							"    \"name\": \"Test\",",
+							"    \"email\": \"email@gmail.com\",",
+							"    \"password\": \"admin@123\"",
+							"});",
+							"",
+							"pm.sendRequest({",
+							"    url: url,",
+							"    method: 'POST',",
+							"    header: {",
+							"        \"content-type\": \"application/json\",",
+							"        \"accept\": \"application/json\",",
+							"        'Authorization': 'Bearer ' + pm.environment.get(\"ACCESS_TOKEN\")",
+							"    },",
+							"    body: {",
+							"        mode: 'raw',",
+							"        raw: data",
+							"    }",
+							"}, function (err, res) {",
+							"    if (err) {",
+							"        console.log(err);",
+							"    } else {",
+							"        pm.environment.set(\"USER_ID\", res.json().id);",
+							"    }",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{ACCESS_TOKEN}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "{{URL_API}}/api/v1/user/{{USER_ID}}",
+					"host": [
+						"{{URL_API}}"
+					],
+					"path": [
+						"api",
+						"v1",
+						"user",
+						"{{USER_ID}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "SEARCH_USERS",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "729066a3-2f2c-4d72-809b-e0984bafcc07",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{ACCESS_TOKEN}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "{{URL_API}}/api/v1/user/a",
+					"host": [
+						"{{URL_API}}"
+					],
+					"path": [
+						"api",
+						"v1",
+						"user",
+						"a"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}
