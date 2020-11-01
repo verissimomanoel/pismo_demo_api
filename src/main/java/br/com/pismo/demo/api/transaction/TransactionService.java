@@ -20,9 +20,17 @@ public interface TransactionService {
     /**
      * Save data of entity {@link Transaction}.
      *
-     * @param transactionTO
+     * @param transaction
      * @return
      * @throws BusinessException
      */
-    Transaction save(TransactionTO transactionTO);
+    Transaction save(Transaction transaction);
+
+    /**
+     * Create a instance of {@link Transaction} by {@link TransactionTO}.
+     *
+     * @param transactionTO
+     * @return
+     */
+    Transaction getTransaction(TransactionTO transactionTO);
 }

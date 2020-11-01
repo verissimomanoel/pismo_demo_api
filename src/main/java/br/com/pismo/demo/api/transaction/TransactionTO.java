@@ -5,15 +5,13 @@
  */
 package br.com.pismo.demo.api.transaction;
 
-import br.com.pismo.demo.api.account.Account;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Getter;
 import lombok.Setter;
-import org.springframework.data.annotation.Id;
 
 import javax.validation.constraints.NotNull;
 import java.io.Serializable;
-import java.time.LocalDateTime;
+import java.math.BigDecimal;
 
 /**
  * 'TransactionTO'.
@@ -36,11 +34,6 @@ public class TransactionTO implements Serializable {
     @ApiModelProperty(value = "Operation type of transactions")
     private Integer operationType;
 
-    @NotNull
     @ApiModelProperty(value = "Amount of transaction")
-    private Double amount;
-
-    @NotNull
-    @ApiModelProperty(value = "Date and time of transaction")
-    private LocalDateTime eventDate;
+    private BigDecimal amount;
 }

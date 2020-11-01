@@ -21,28 +21,30 @@ import javax.validation.Valid;
 
 @RestController
 @Api(tags = "Transaction API")
-@RequestMapping("${app.api.base}/transaction")
+@RequestMapping("${app.api.base}/transactions")
 @Scope("prototype")
 public class TransactionController {
     @Autowired
     private TransactionService transactionService;
 
     /**
-     * Create a new transactionTO.
+     * Create a new transaction.
      *
      * @param transactionTO
      * @return
      */
     @PreAuthorize("isAuthenticated()")
-    @ApiOperation(value = "Create a new transactionTO", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+    @ApiOperation(value = "Create a new transaction", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     @ApiResponses({@ApiResponse(code = 200, message = "Success", response = Transaction.class),
             @ApiResponse(code = 403, message = "Denied", response = MessageResponse.class),
             @ApiResponse(code = 400, message = "Bad Request", response = MessageResponse.class)
     })
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<Transaction> create(
+    public ResponseEntity<TransactionTO> create(
             @ApiParam(value = "Transaction informations", required = true) @Valid @RequestBody final TransactionTO transactionTO) {
-        Transaction transactionSaved = transactionService.save(transactionTO);
-        return ResponseEntity.ok(transactionSaved);
+        Transaction transaction = transactionService.getTransaction(transactionTO);
+        transactionService.save(transaction);
+        transactionTO.setId(transaction.getId());
+        return ResponseEntity.ok(transactionTO);
     }
 }
