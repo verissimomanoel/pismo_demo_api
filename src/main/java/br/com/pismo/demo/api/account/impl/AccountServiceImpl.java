@@ -51,7 +51,7 @@ public class AccountServiceImpl implements AccountService {
         }
 
         Optional<Account> optionalAccount = accountRepository.findById(id);
-        optionalAccount.orElseThrow(() -> new BusinessException(PismoDemoMessageCode.ERROR_NO_FOUND));
+        optionalAccount.orElseThrow(() -> new BusinessException(PismoDemoMessageCode.ERROR_ACCOUNT_NO_FOUND));
 
         return optionalAccount.get();
     }

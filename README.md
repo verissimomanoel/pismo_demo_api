@@ -9,8 +9,6 @@ Database is NoSQL **MongoDB**.
 
 There is a login functionality included.
 
-Users can shop for products. Each user has his own shopping cart.
-
 ## Configuration
 
 ### Configuration Files

@@ -1,34 +1,28 @@
 /*
- * AccountService.java
+ * TransactionService.java
  * Copyright MedSchool.
  *
  * Este software é confidencial e propriedade da MedSchool.
  * Não é permitida sua distribuição ou divulgação do seu conteúdo sem expressa autorização da MedSchool.
  * Este arquivo contém informações proprietárias.
  */
-package br.com.pismo.demo.api.account;
+package br.com.pismo.demo.api.transaction;
 
+import br.com.pismo.demo.api.account.Account;
 import br.com.pismo.demo.api.exception.BusinessException;
 
 /**
- * Interface of business class of {@link Account}.
+ * Interface of business class of {@link Transaction}.
  *
  * @author Manoel Veríssimo dos Santos Neto
  */
-public interface AccountService {
+public interface TransactionService {
     /**
-     * Save data of entity {@link Account}.
+     * Save data of entity {@link Transaction}.
      *
-     * @param account
+     * @param transactionTO
      * @return
+     * @throws BusinessException
      */
-     Account save(Account account);
-
-    /**
-     * Get account by id reported.
-     *
-     * @param id
-     * @return
-     */
-     Account getById(String id);
+    Transaction save(TransactionTO transactionTO);
 }
