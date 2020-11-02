@@ -2,7 +2,7 @@ version: "2.0"
 services:
   mongo:
     image: mongo
-    container_name: shopping-cart-mongodb
+    container_name: pismo-demo-mongodb
     ports:
       - 27017:27017
     command: mongod --logpath=/dev/null # --quiet
@@ -10,7 +10,7 @@ services:
       - spring-mongo-net
   springboot:
     build: .
-    container_name: shopping-cart-api
+    container_name: pismo-demo-api
     ports:
       - 8080:8080
     depends_on:

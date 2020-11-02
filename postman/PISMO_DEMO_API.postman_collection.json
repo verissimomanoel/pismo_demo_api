@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "97f9bb2a-3258-4a5b-9739-e56ff0be0edd",
+		"_postman_id": "47e14420-bf7c-4f03-b5d4-eb32368865d1",
 		"name": "PISMO_DEMO_API",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -11,7 +11,7 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "e0c97f44-1a7b-4f3d-a1a5-675e58115499",
+						"id": "ade31207-fd52-40cb-88b9-154dea1fefa2",
 						"exec": [
 							"var jsonData = JSON.parse(responseBody);",
 							"postman.setEnvironmentVariable(\"ACCESS_TOKEN\", jsonData.accessToken);"
@@ -55,7 +55,7 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "469c4b7e-ef6f-4b4a-8fd7-d93c480994ea",
+						"id": "bf433e22-b872-4a7a-8ca2-724fd43141e7",
 						"exec": [
 							"pm.test(\"Status code is 200\", function () {",
 							"    pm.response.to.have.status(200);",
@@ -109,7 +109,7 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "4901684a-f225-4027-b954-25f0c8ba8342",
+						"id": "4a689ba3-41d4-4920-bc90-ef7896752cc2",
 						"exec": [
 							"pm.test(\"Status code is 200\", function () {",
 							"    pm.response.to.have.status(200);",
@@ -167,7 +167,7 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "1bd9c193-f5cb-48bf-a9cf-8e94452f9a92",
+						"id": "4e440e44-474b-45ba-a17a-a581eac0f2d2",
 						"exec": [
 							"pm.test(\"Status code is 200\", function () {",
 							"    pm.response.to.have.status(200);",
@@ -179,7 +179,7 @@
 				{
 					"listen": "prerequest",
 					"script": {
-						"id": "f35f480d-0bcf-4196-ba05-30e5a77d0973",
+						"id": "68a6789e-3f85-40e5-b13a-7cfa62963b0b",
 						"exec": [
 							"var url = pm.environment.get(\"URL_API\");",
 							"url += \"/api/v1/user/\";",
@@ -259,7 +259,7 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "e7e50f1d-a2e9-4aff-a7d7-7d7eff249d2c",
+						"id": "cb919730-1306-47e9-9e3d-515af1df5afc",
 						"exec": [
 							"pm.test(\"Status code is 200\", function () {",
 							"    pm.response.to.have.status(200);",
@@ -313,11 +313,25 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "ea108467-1ba1-49f8-8c81-4ae73980b2bc",
+						"id": "e065ad3b-43de-4c69-baa3-c24488763e16",
 						"exec": [
-							"pm.test(\"Status code is 400\", function () {",
-							"    pm.response.to.have.status(400);",
-							"});"
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"var jsonData = JSON.parse(responseBody);",
+							"postman.setEnvironmentVariable(\"ACCOUNT_ID\", jsonData.id);"
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "1ffb0226-8495-410a-aa74-7b1908528b95",
+						"exec": [
+							"var len = 10;",
+							"var documentNumber = parseInt((Math.random() * 9 + 1) * Math.pow(10,len-1), 10);",
+							"postman.setEnvironmentVariable(\"DOCUMENT_NUMBER\", documentNumber);"
 						],
 						"type": "text/javascript"
 					}
@@ -338,7 +352,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n    \"documentNumber\": \"12345678900\"\n}",
+					"raw": "{\n    \"documentNumber\": {{DOCUMENT_NUMBER}}\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -365,7 +379,7 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "ea108467-1ba1-49f8-8c81-4ae73980b2bc",
+						"id": "1eb7eb50-4a97-497a-9af5-f37271e27d1d",
 						"exec": [
 							"pm.test(\"Status code is 200\", function () {",
 							"    pm.response.to.have.status(200);",
@@ -401,7 +415,7 @@
 					}
 				},
 				"url": {
-					"raw": "{{URL_API}}/api/v1/accounts/5f9dda4a410ab179d5b9bd68",
+					"raw": "{{URL_API}}/api/v1/accounts/{{ACCOUNT_ID}}",
 					"host": [
 						"{{URL_API}}"
 					],
@@ -409,7 +423,7 @@
 						"api",
 						"v1",
 						"accounts",
-						"5f9dda4a410ab179d5b9bd68"
+						"{{ACCOUNT_ID}}"
 					]
 				}
 			},
@@ -421,10 +435,10 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "ea108467-1ba1-49f8-8c81-4ae73980b2bc",
+						"id": "22daa194-9f6f-44be-8d1d-618cbdd651ca",
 						"exec": [
-							"pm.test(\"Status code is 401\", function () {",
-							"    pm.response.to.have.status(401);",
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
 							"});"
 						],
 						"type": "text/javascript"
@@ -446,7 +460,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n  \"accountId\": \"5f9dda4a410ab179d5b9bd68\",\n  \"amount\": 1203.57,\n  \"operationType\": 4\n}",
+					"raw": "{\n  \"accountId\": \"{{ACCOUNT_ID}}\",\n  \"amount\": 1203.57,\n  \"operationType\": 4\n}",
 					"options": {
 						"raw": {
 							"language": "json"
