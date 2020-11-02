@@ -7,7 +7,7 @@ This is a demo project for practicing Spring API. The idea was to build some bas
 It was made using **Spring Boot**, **Spring Security**, **Spring Data**, **Mongo DB** and **Docker**. 
 Database is NoSQL **MongoDB**.
 
-There is a login functionality included.
+There is a login functionality included because all of the endpoints are safe and need a JWT token in the header for authentication.
 
 The documentation of API is published on http://IP:8080/swagger-ui/index.html.
 
@@ -114,7 +114,7 @@ $ docker-compose up
 
 ## Docker 
 
-* **api/Dockerfile** - Docker build file for executing pismo-demo-api Docker images. 
+* **Dockerfile** - Docker build file for executing pismo-demo-api Docker images. 
 Instructions to build artifacts, copy build artifacts to docker image and then run app on proper port with proper configuration file.
 
 ## Extra 
