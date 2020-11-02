@@ -9,6 +9,12 @@ Database is NoSQL **MongoDB**.
 
 There is a login functionality included.
 
+The documentation of API is published on http://IP:8080/swagger-ui/index.html.
+
+The data structure is represented in the class diagram below:
+
+![Class Diagram](diagram.png)
+
 ## Configuration
 
 ### Configuration Files
