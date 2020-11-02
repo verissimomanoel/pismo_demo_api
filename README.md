@@ -9,6 +9,15 @@ Database is NoSQL **MongoDB**.
 
 There is a login functionality included because all of the endpoints are safe and need a JWT token in the header for authentication.
 
+To authenticate do a POST in http://SERVER_IP:SERVER_PORT/api/v1/auth/login with the body below:
+
+```javascript
+{
+  "login": "adminpismo@gmail.com",
+  "password": "admin@123"
+}
+```
+
 The documentation of API is published on http://IP:8080/swagger-ui/index.html.
 
 The data structure is represented in the class diagram below:
