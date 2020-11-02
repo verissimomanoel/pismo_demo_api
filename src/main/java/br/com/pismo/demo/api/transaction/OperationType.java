@@ -59,7 +59,7 @@ public enum OperationType {
      */
     public static OperationType getById(Integer id) {
         for (OperationType operationType : OperationType.values()) {
-            if (id == operationType.getId()) {
+            if (id.equals(operationType.getId())) {
                 return operationType;
             }
         }

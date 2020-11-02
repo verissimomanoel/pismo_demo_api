@@ -32,7 +32,7 @@ public class AccountServiceImpl implements AccountService {
      * @see AccountService#save(Account)
      */
     @Override
-    public Account save(Account account) throws BusinessException {
+    public Account save(Account account) {
         Optional<Account> optionalAccount = accountRepository.findAccountByDocumentNumber(account.getDocumentNumber());
         if (optionalAccount.isPresent()) {
             throw new BusinessException(PismoDemoMessageCode.ERROR_ACCOUNT_ALREADY_EXISTS);
@@ -51,8 +51,6 @@ public class AccountServiceImpl implements AccountService {
         }
 
         Optional<Account> optionalAccount = accountRepository.findById(id);
-        optionalAccount.orElseThrow(() -> new BusinessException(PismoDemoMessageCode.ERROR_ACCOUNT_NO_FOUND));
-
-        return optionalAccount.get();
+        return optionalAccount.orElseThrow(() -> new BusinessException(PismoDemoMessageCode.ERROR_ACCOUNT_NO_FOUND));
     }
 }

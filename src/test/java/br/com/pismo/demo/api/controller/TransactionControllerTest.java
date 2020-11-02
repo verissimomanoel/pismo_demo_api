@@ -44,7 +44,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
  * @author Manoel Veríssimo dos Santos Neto
  */
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.MOCK)
-public class TransactionControllerTest {
+class TransactionControllerTest {
     private MockMvc mvc;
 
     @Autowired
@@ -67,7 +67,7 @@ public class TransactionControllerTest {
     }
 
     @Test
-    public void whenCreate_thenReturnTransaction()
+    void whenCreate_thenReturnTransaction()
             throws Exception {
 
         TransactionTO transactionTO = getTransactionTOMock(OperationType.PAGAMENTO);

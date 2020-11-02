@@ -111,7 +111,7 @@ class UserControllerTest {
     }
 
     @Test
-    public void whenDelete_thenUserShouldBeDeleted()
+    void whenDelete_thenUserShouldBeDeleted()
             throws Exception {
 
         User user = getUserMock();

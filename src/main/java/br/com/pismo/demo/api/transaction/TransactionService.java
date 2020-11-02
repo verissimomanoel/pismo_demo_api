@@ -8,7 +8,6 @@
  */
 package br.com.pismo.demo.api.transaction;
 
-import br.com.pismo.demo.api.account.Account;
 import br.com.pismo.demo.api.exception.BusinessException;
 
 /**

@@ -39,7 +39,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
  * @author Manoel Veríssimo dos Santos Neto
  */
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.MOCK)
-public class AccountControllerTest {
+class AccountControllerTest {
     private MockMvc mvc;
 
     @Autowired
@@ -59,7 +59,7 @@ public class AccountControllerTest {
     }
 
     @Test
-    public void whenCreate_thenReturnAccount()
+    void whenCreate_thenReturnAccount()
             throws Exception {
 
         Account account = getAccountMock();
@@ -74,7 +74,7 @@ public class AccountControllerTest {
     }
 
     @Test
-    public void whenGetById_thenReturnAccount()
+    void whenGetById_thenReturnAccount()
             throws Exception {
 
         String id = "123";

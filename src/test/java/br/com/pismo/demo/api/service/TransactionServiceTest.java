@@ -31,7 +31,7 @@ import static org.mockito.Mockito.when;
  * @author Manoel Veríssimo dos Santos Neto
  */
 @SpringBootTest
-public class TransactionServiceTest {
+class TransactionServiceTest {
     @Mock
     private TransactionRepository transactionRepository;
 
@@ -53,7 +53,7 @@ public class TransactionServiceTest {
     }
 
     @Test
-    public void whenValidTransaction_thenTransactionShouldBeSaved() {
+    void whenValidTransaction_thenTransactionShouldBeSaved() {
         TransactionTO transactionTO = getTransactionTOMock(OperationType.PAGAMENTO);
         Account account = getAccountMock();
         when(accountRepository.findById(account.getId())).thenReturn(Optional.of(account));
@@ -66,7 +66,7 @@ public class TransactionServiceTest {
     }
 
     @Test
-    public void whenValidTransactionSaque_thenTransactionShouldBeSaved() {
+    void whenValidTransactionSaque_thenTransactionShouldBeSaved() {
         TransactionTO transactionTO = getTransactionTOMock(OperationType.SAQUE);
         Account account = getAccountMock();
         when(accountRepository.findById(account.getId())).thenReturn(Optional.of(account));
@@ -87,9 +87,7 @@ public class TransactionServiceTest {
         when(accountService.getById(account.getId())).thenReturn(account);
 
         assertThrows(BusinessException.class, () -> {
-            Transaction transaction = transactionService.getTransaction(transactionTO);
-            when(transactionRepository.save(transaction)).thenReturn(transaction);
-            transactionService.save(transaction);
+            transactionService.getTransaction(transactionTO);
         });
     }
 

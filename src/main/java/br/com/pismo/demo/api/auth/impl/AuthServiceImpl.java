@@ -44,8 +44,7 @@ public class AuthServiceImpl implements AuthService {
     public CredentialTO login(AuthTO authTO) {
         String password = Util.encrypt(authTO.getPassword());
         Optional<User> userOptional = userRepository.findUserByEmailAndPassword(authTO.getLogin(), password);
-        userOptional.orElseThrow(() -> new BusinessException(PismoDemoMessageCode.ERROR_LOGIN_PASSWORD_INVALID));
-        User user = userOptional.get();
+        User user = userOptional.orElseThrow(() -> new BusinessException(PismoDemoMessageCode.ERROR_LOGIN_PASSWORD_INVALID));
 
         CredentialTO credentialTO = new CredentialTO();
         credentialTO.setLogin(user.getEmail());

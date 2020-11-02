@@ -29,7 +29,7 @@ import static org.mockito.Mockito.when;
  * @author Manoel Veríssimo dos Santos Neto
  */
 @SpringBootTest
-public class AccountServiceTest {
+class AccountServiceTest {
     @Mock
     private AccountRepository accountRepository;
 
@@ -45,7 +45,7 @@ public class AccountServiceTest {
     }
 
     @Test
-    public void whenValidAccount_thenAccountShouldBeSaved() {
+    void whenValidAccount_thenAccountShouldBeSaved() {
         Account account = getAccountMock();
         when(accountRepository.save(account)).thenReturn(account);
 
@@ -65,7 +65,7 @@ public class AccountServiceTest {
     }
 
     @Test
-    public void whenGetExistsAccount_thenAccountShouldBeFound() {
+    void whenGetExistsAccount_thenAccountShouldBeFound() {
         String id = "123";
         Account account = getAccountMock();
         when(accountRepository.findById(id)).thenReturn(Optional.of(account));
@@ -75,7 +75,7 @@ public class AccountServiceTest {
     }
 
     @Test
-    public void whenGetNotExistsAccount_thenAccountShouldNotBeFound() {
+    void whenGetNotExistsAccount_thenAccountShouldNotBeFound() {
         String id = "123";
         when(accountRepository.findById(id)).thenReturn(Optional.empty());
 
@@ -85,7 +85,7 @@ public class AccountServiceTest {
     }
 
     @Test
-    public void whenGetWithoutAccountId_thenAccountShouldNotBeFound() {
+    void whenGetWithoutAccountId_thenAccountShouldNotBeFound() {
         assertThrows(BusinessException.class, () -> {
             accountService.getById(null);
         });

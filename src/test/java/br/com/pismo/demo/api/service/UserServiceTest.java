@@ -83,7 +83,7 @@ class UserServiceTest {
         String id = "123";
         doNothing().when(userRepository).deleteById(id);
         userService.delete(id);
-        assertTrue(id != null);
+        assertNotNull(id);
     }
 
     @Test

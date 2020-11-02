@@ -8,8 +8,6 @@
  */
 package br.com.pismo.demo.api.account;
 
-import br.com.pismo.demo.api.exception.BusinessException;
-
 /**
  * Interface of business class of {@link Account}.
  *
