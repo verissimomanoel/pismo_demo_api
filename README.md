@@ -9,7 +9,7 @@ Database is NoSQL **MongoDB**.
 
 There is a login functionality included because all of the endpoints are safe and need a JWT token in the header for authentication.
 
-To authenticate do a POST in http://SERVER_IP:SERVER_PORT/api/v1/auth/login with the body below:
+To authenticate do a POST in http://SERVER_IP:SERVER_PORT/api/v1/auth/login (e.g. [http://localhost:8080/api/v1/auth/login](http://localhost:8080/api/v1/auth/login)) with the body below:
 
 ```javascript
 {
@@ -18,7 +18,7 @@ To authenticate do a POST in http://SERVER_IP:SERVER_PORT/api/v1/auth/login with
 }
 ```
 
-The documentation of API is published on http://IP:8080/swagger-ui/index.html.
+The documentation of API is published on http://SERVER_IP:SERVER_PORT/swagger-ui/index.html (e.g. [http://localhost:8080/swagger-ui/index.html](http://localhost:8080/swagger-ui/index.html)).
 
 The data structure is represented in the class diagram below:
 
