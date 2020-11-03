@@ -11,6 +11,8 @@ package br.com.pismo.demo.api.transaction;
 import br.com.pismo.demo.api.exception.BusinessException;
 import br.com.pismo.demo.api.exception.PismoDemoMessageCode;
 
+import java.util.Arrays;
+
 /**
  * The enum to identify the type of transaction.
  *
@@ -58,12 +60,11 @@ public enum OperationType {
      * @return
      */
     public static OperationType getById(Integer id) {
-        for (OperationType operationType : OperationType.values()) {
-            if (id.equals(operationType.getId())) {
-                return operationType;
-            }
-        }
+        OperationType operationType = Arrays.stream(OperationType.values())
+                .filter(op -> op.getId().equals(id))
+                .findAny()
+                .orElseThrow(() -> new BusinessException(PismoDemoMessageCode.ERROR_OPERATION_TYPE_NOT_FOUND));
 
-        throw new BusinessException(PismoDemoMessageCode.ERROR_OPERATION_TYPE_NOT_FOUND);
+        return operationType;
     }
 }
